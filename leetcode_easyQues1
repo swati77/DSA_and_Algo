@@ -1,0 +1,35 @@
+Leet code question series---
+Section - Easy
+
+ques1.  https://leetcode.com/problems/find-subarrays-with-equal-sum/description/
+code-
+class Solution:
+    def findSubarrays(self, nums: List[int]) -> bool:
+        l = 2
+        flag=False
+        if len(nums)<=l:
+            return flag
+        
+        sum,count=0,0
+        res = {}
+        i,j=0,0
+        idx=0
+        while j<len(nums):
+        
+            if j-i+1<l:
+                sum = sum+nums[idx]
+                idx+=1
+                j += 1
+            elif j-i+1==l: 
+                sum = sum+nums[idx]
+                j += 1
+                idx+=1
+                if sum not in res:
+                    res[sum]=1 
+                else:
+                    return True
+                    
+            else:
+                sum=sum - nums[i]
+                i += 1
+        return False
